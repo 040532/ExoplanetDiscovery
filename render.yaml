@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: exoplanet-detector
+    name: DiscoverYourOwnExoplanet
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
