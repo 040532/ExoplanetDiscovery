@@ -1,12 +1,9 @@
 services:
   - type: web
-    name: DiscoverYourOwnExoplanet
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    plan: free
+    name: exoplanet-detector
+    env: docker
+    repo: https://github.com/040532/ExoplanetDiscovery
     branch: main
-    runtime: python
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.13
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
