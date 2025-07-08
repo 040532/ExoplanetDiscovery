@@ -15,7 +15,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY app/ app/
+COPY utils/ utils/
+COPY templates/ templates/
+COPY static/ static/
+COPY models/ models/
+COPY wsgi.py .
+COPY app.py .
 
 # Expose port for Railway
 EXPOSE 10000
