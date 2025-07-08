@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 10000
 
 # Start using Gunicorn
-CMD ["gunicorn", "wsgi:app", "--bind", "0.0.0.0:10000", "--workers", "3"]
+CMD ["gunicorn", "wsgi:app", "--bind", "0.0.0.0:${PORT}", "--workers", "3"]
