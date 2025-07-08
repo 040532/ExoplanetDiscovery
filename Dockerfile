@@ -22,5 +22,4 @@ COPY . .
 EXPOSE 10000
 
 # Start using Gunicorn
-CMD exec gunicorn wsgi:app --bind 0.0.0.0:$PORT --workers 3
-
+CMD exec gunicorn wsgi:app --bind 0.0.0.0:${PORT:-10000} --workers 3
