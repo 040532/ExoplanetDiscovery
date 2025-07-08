@@ -1,8 +1,7 @@
 from fpdf import FPDF
 import io
 import os
-import plotly.graph_objs as go
-import uuid
+
 from flask import current_app
 
 class PDF(FPDF):
@@ -59,20 +58,20 @@ def generate_pdf(results, model_name):
         pdf.cell(0, 10, f"Confidence: {confidence:.2f}%", ln=True)
 
         # Light curve visualization
-        if "raw_data" in r:
-            try:
-                fig = go.Figure()
-                fig.add_trace(go.Scatter(y=r["raw_data"], mode="lines", line=dict(color="royalblue")))
-                fig.update_layout(title="Light Curve", height=300, margin=dict(t=40, b=40, l=10, r=10))
+        # if "raw_data" in r:
+        #     try:
+        #         fig = go.Figure()
+        #         fig.add_trace(go.Scatter(y=r["raw_data"], mode="lines", line=dict(color="royalblue")))
+        #         fig.update_layout(title="Light Curve", height=300, margin=dict(t=40, b=40, l=10, r=10))
 
-                img_path = f"temp_plot_{uuid.uuid4().hex}.png"
-                fig.write_image(img_path, width=600, height=300)
-                pdf.image(img_path, w=170)
-                os.remove(img_path)
-            except Exception as e:
-                pdf.set_text_color(255, 0, 0)
-                pdf.multi_cell(0, 8, f"⚠️ Could not generate plot.\n{str(e)}")
-                pdf.set_text_color(0, 0, 0)
+        #         img_path = f"temp_plot_{uuid.uuid4().hex}.png"
+        #         fig.write_image(img_path, width=600, height=300)
+        #         pdf.image(img_path, w=170)
+        #         os.remove(img_path)
+        #     except Exception as e:
+        #         pdf.set_text_color(255, 0, 0)
+        #         pdf.multi_cell(0, 8, f"⚠️ Could not generate plot.\n{str(e)}")
+        #         pdf.set_text_color(0, 0, 0)
 
         pdf.ln(10)
 

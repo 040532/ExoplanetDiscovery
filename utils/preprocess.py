@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-import numpy as np
+
 
 def preprocess_input(file_path):
     df = pd.read_csv(file_path, header=None)
